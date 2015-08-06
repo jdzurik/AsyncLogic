@@ -1,0 +1,69 @@
+{
+    "GlobalName": "AsyncLogic",
+    "LocalGroupName": "LocalLogic",
+    "NodeName": {
+        "Name": "Node1",
+        "NodeID": 0,
+        "ActorType": "Master"
+    },
+    "RootPath": "Default",
+    "Admin": {
+        "Port": "6868",
+        "IPAddreses": [ "127.0.0.1" ]
+    },
+    "Data": {
+        "Port": "6869",
+        "IPAddreses": [ "127.0.0.1" ],
+        "Paths": [ "Default" ],
+        "AutoID": true,
+        "AutoIndex": false,
+        "AutoReplicate": true
+    },
+     "Events": {
+        "SleepTime": 1000
+    },
+    "Index": {
+        "Port": "6870",
+        "IPAddreses": [ "127.0.0.1" ]
+    },
+    "Security": {
+        "Users": [
+            {
+                "Name": "Admin",
+                "Salt": "ndk#ts32mx87",
+                "Password": ""
+            }
+        ],
+        "EncryptData": false,
+        "Communications": {
+            "RequreSSL": "",
+            "CertLocation": ""
+        }
+    },
+    "Logic": {
+        "Path": "\\Logic\\"
+    },
+    "Log": {
+        "Errors": true,
+        "UserAccess": true,
+        "LogicChange": false,
+        "DataChange": false,
+        "UserAccess": true
+
+    },
+    "Schema": { "Path": "\\Schema\\" },
+    "Replication": {
+        "AcceptData": true,
+        "Replicas": 2,
+        "Path": "\\Replication\\",
+        "Level": "Global",
+        "EnableDiscovery": true
+    },
+    "Shards": {
+        "Port": "6886",
+        "EnableDiscovery": true
+    }
+
+
+
+}
