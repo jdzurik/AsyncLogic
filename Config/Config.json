@@ -48,7 +48,7 @@
         "UserAccess": true,
         "LogicChange": false,
         "DataChange": false,
-        "UserAccess": true
+        "UserAccess": false
 
     },
     "Schema": { "Path": "\\Schema\\" },
