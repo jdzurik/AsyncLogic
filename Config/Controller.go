@@ -1,8 +1,8 @@
 // ConfigController.go
-package ConfigController
+package main
 
 import (
-	//"fmt"
+	"fmt"
 	"encoding/json"
 	"net/http"
 )
@@ -20,6 +20,7 @@ func SaveConfig(w http.ResponseWriter, r *http.Request) {
 	var c config_struct
 	err := decoder.Decode(&c)
 	if err != nil {
-		panic(err)
+		//cfmt.Fprint(w, "{'Save': '"+err.Error()+"'")
 	}
+	http.ServeFile(w, r, "Admin/Index.htm")
 }

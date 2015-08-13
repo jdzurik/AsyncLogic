@@ -18,16 +18,16 @@
         "AutoID": true,
         "AutoIndex": false,
         "AutoReplicate": true,
-		"Path":"[root]/Data"
+		"Path":"[root]/Data/"
     },
      "Events": {
         "SleepTime": 1000,
-		"Path":"[root]/Events"
+		"Path":"[root]/Events/"
     },
     "Index": {
         "Port": "6870",
         "IPAddreses": [ "127.0.0.1" ],
-		"Path":"[root]/Index"
+		"Path":"[root]/Index/"
     },
     "Security": {
         "Users": [
@@ -42,17 +42,17 @@
             "CertLocation": ""
         },
 		"Encryption": {
-			"Enabled":true
+			"Enabled":true,
 			"UserData":	{
 				"Enabled":false,
 				"Key":"kdsfghufhv"
-			}
+			},
 			"Data":{
 				"Enabled":false,
 				"Key":"kdsfghufhv"
 			}
 		},
-		"Path":"[root]/Security"
+		"Path":"[root]/Security/"
     },
     "Logic": {
         "Path": "[root]/Logic/"
@@ -62,7 +62,7 @@
         "UserAccess": true,
         "LogicChange": false,
         "DataChange": false,
-        "UserAccess": false
+        "UserAccess": false,
 		"Path": "[root]/Log/"
     },
     "Schema": { "Path": "[root]/Schema/" },
