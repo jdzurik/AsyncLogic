@@ -6,7 +6,7 @@
         "NodeID": 0,
         "ActorType": "Master"
     },
-    "RootPath": "Default",
+    "RootPath": "here",
     "Admin": {
         "Port": "6868",
         "IPAddreses": [ "127.0.0.1" ]
@@ -17,14 +17,17 @@
         "Paths": [ "Default" ],
         "AutoID": true,
         "AutoIndex": false,
-        "AutoReplicate": true
+        "AutoReplicate": true,
+		"Path":"[root]/Data"
     },
      "Events": {
-        "SleepTime": 1000
+        "SleepTime": 1000,
+		"Path":"[root]/Events"
     },
     "Index": {
         "Port": "6870",
-        "IPAddreses": [ "127.0.0.1" ]
+        "IPAddreses": [ "127.0.0.1" ],
+		"Path":"[root]/Index"
     },
     "Security": {
         "Users": [
@@ -34,14 +37,25 @@
                 "Password": ""
             }
         ],
-        "EncryptData": false,
         "Communications": {
             "RequreSSL": "",
             "CertLocation": ""
-        }
+        },
+		"Encryption": {
+			"Enabled":true
+			"UserData":	{
+				"Enabled":false,
+				"Key":"kdsfghufhv"
+			}
+			"Data":{
+				"Enabled":false,
+				"Key":"kdsfghufhv"
+			}
+		},
+		"Path":"[root]/Security"
     },
     "Logic": {
-        "Path": "\\Logic\\"
+        "Path": "[root]/Logic/"
     },
     "Log": {
         "Errors": true,
@@ -49,13 +63,12 @@
         "LogicChange": false,
         "DataChange": false,
         "UserAccess": false
-
+		"Path": "[root]/Log/"
     },
-    "Schema": { "Path": "\\Schema\\" },
+    "Schema": { "Path": "[root]/Schema/" },
     "Replication": {
         "AcceptData": true,
         "Replicas": 2,
-        "Path": "\\Replication\\",
         "Level": "Global",
         "EnableDiscovery": true
     },
