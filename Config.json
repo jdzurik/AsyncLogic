@@ -1,7 +1,7 @@
 {
     "GlobalName": "AsyncLogic",
     "LocalGroupName": "LocalLogic",
-    "NodeName": {
+    "Node": {
         "Name": "Node1",
         "NodeID": 0,
         "ActorType": "Master"
@@ -14,20 +14,19 @@
     "Data": {
         "Port": "6869",
         "IPAddreses": [ "127.0.0.1" ],
-        "Paths": [ "Default" ],
+        "Paths": [ "C:\\AsyncData","C:\\AsyncData" ],
         "AutoID": true,
         "AutoIndex": false,
-        "AutoReplicate": true,
-		"Path":"[root]/Data/"
+        "AutoReplicate": true
     },
-     "Events": {
+    "Events": {
         "SleepTime": 1000,
-		"Path":"[root]/Events/"
+        "Path": "[root]/Events/"
     },
     "Index": {
         "Port": "6870",
         "IPAddreses": [ "127.0.0.1" ],
-		"Path":"[root]/Index/"
+        "Path": "[root]/Index/"
     },
     "Security": {
         "Users": [
@@ -41,18 +40,18 @@
             "RequreSSL": "",
             "CertLocation": ""
         },
-		"Encryption": {
-			"Enabled":true,
-			"UserData":	{
-				"Enabled":false,
-				"Key":"kdsfghufhv"
-			},
-			"Data":{
-				"Enabled":false,
-				"Key":"kdsfghufhv"
-			}
-		},
-		"Path":"[root]/Security/"
+        "Encryption": {
+            "Enabled": true,
+            "UserData": {
+                "Enabled": false,
+                "Key": "kdsfghufhv"
+            },
+            "Data": {
+                "Enabled": false,
+                "Key": "kdsfghufhv"
+            }
+        },
+        "Path": "[root]/Security/"
     },
     "Logic": {
         "Path": "[root]/Logic/"
@@ -63,7 +62,7 @@
         "LogicChange": false,
         "DataChange": false,
         "UserAccess": false,
-		"Path": "[root]/Log/"
+        "Path": "[root]/Log/"
     },
     "Schema": { "Path": "[root]/Schema/" },
     "Replication": {
