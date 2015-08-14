@@ -20,7 +20,7 @@ type configObj struct {
 	Log string
 	Schema string
 	Replication string
-	Shards string
+	Shards string 
 }
 
 type serverObj struct {
