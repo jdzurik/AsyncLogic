@@ -2,8 +2,10 @@
 package ConfigObject
 
 import (
-//	"fmt"
-//	"encoding/json"
+	"fmt"
+	"encoding/json"
+	"os"
+
 //	"net/http"
 )
 
@@ -127,3 +129,17 @@ type shardsObj struct {
 //	}
 //	http.ServeFile(w, r, "Admin/Index.htm")
 //}
+
+func LoadConfig()(config configObj){
+	configFile, err := os.Open("config.json")
+    if err != nil {
+        fmt.Println("Error opening config file ")
+    }
+
+    jsonParser := json.NewDecoder(configFile)
+    if err = jsonParser.Decode(&config); err != nil {
+        fmt.Println("Error parsing config file " + err.Error())
+    }
+	configFile.Close()
+	return 
+}
