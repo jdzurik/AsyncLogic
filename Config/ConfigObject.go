@@ -15,14 +15,15 @@ type configObj struct {
 	Node nodeObj
 	RootPath string
 	Admin adminObj
-	Data string
-	Events string
-	Index string
-	Security string
-	Log string
-	Schema string
-	Replication string
-	Shards string 
+	Data dataObj
+	Events eventsObj
+	Index indexObj
+	Security securityObj
+	Logic logicObj
+	Log logObj
+	Schema schemaObj
+	Replication replicationObj
+	Shards shardsObj
 }
 
 type serverObj struct {
@@ -38,6 +39,7 @@ type nodeObj struct {
 
 type adminObj struct {
 	serverObj 
+	IPAddreses []string 
 }
 
 type dataObj struct {
@@ -132,11 +134,11 @@ type shardsObj struct {
 
 func LoadConfig()(config configObj){
 	var cnfgName = "config.json"
-	if _, err := os.Stat(cnfgName); err != nil {
-    fmt.Printf("no file exists; processing...")
-    process(filename)
+	/*if _, err := os.Stat(cnfgName); err != nil {
+    	fmt.Printf("no file exists; processing...")
+    	setDefalultConfig()
 	}
-	
+	*/
 	configFile, err := os.Open(cnfgName)
     if err != nil {
         fmt.Println("Error opening config file ")
@@ -149,4 +151,88 @@ func LoadConfig()(config configObj){
     }
 	configFile.Close()
 	return 
+}
+
+func setDefalultConfig(){
+	
+	var cnfg = configObj{
+	    GlobalName: "AsyncLogic",
+	    LocalGroupName: "LocalLogic",
+	    Node: {
+	        Name: "Node1",
+	        NodeID: 0,
+	        ActorType : "Master"
+	    },
+	    RootPath: "here",
+	    Admin : {
+	        Port: "6868",
+	        IPAddreses: [ "127.0.0.1" ]
+	    },
+	    Data: {
+	        Port: "6869",
+	        IPAddreses: [ "127.0.0.1" ],
+	        Paths: [ "C:\\AsyncData","C:\\AsyncData" ],
+	        AutoID: true,
+	        AutoIndex: false,
+	        AutoReplicate: true
+	    },
+	    Events: {
+	        SleepTime: 1000,
+	        Path: "[root]/Events/"
+	    },
+	    Index: {
+	        Port: "6870",
+	        IPAddreses: [ "127.0.0.1" ],
+	        Path: "[root]/Index/"
+	    },
+	    Security: {
+	        Users: [
+	            {
+	                Name: "Admin",
+	                Salt: "ndk#ts32mx87",
+	                Password: ""
+	            }
+	        ],
+	        Communications: {
+	            RequreSSL: "",
+	            CertLocation: ""
+	        },
+	        Encryption: {
+	            Enabled: true,
+	            UserData: {
+	                Enabled: false,
+	                Key: "kdsfghufhv"
+	            },
+	            Data: {
+	                Enabled: false,
+	                Key: "kdsfghufhv"
+	            }
+	        },
+	        Path: "[root]/Security/"
+	    },
+	    Logic: {
+	        Path: "[root]/Logic/"
+	    },
+	    Log: {
+	        Errors: true,
+	        UserAccess: true,
+	        LogicChange: false,
+	        DataChange: false,
+	        UserAccess: false,
+	        Path: "[root]/Log/"
+	    },
+	    Schema: { 
+			Path: "[root]/Schema/" 
+		},
+	    Replication: {
+	        AcceptData: true,
+	        Replicas: 2,
+	        Level: "Global",
+	        EnableDiscovery: true
+	    },
+	    Shards: {
+	        Port: "6886",
+	        EnableDiscovery: true
+	    }
+	}
 }
