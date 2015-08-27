@@ -131,14 +131,21 @@ type shardsObj struct {
 //}
 
 func LoadConfig()(config configObj){
-	configFile, err := os.Open("config.json")
+	var cnfgName = "config.json"
+	if _, err := os.Stat(cnfgName); err != nil {
+    fmt.Printf("no file exists; processing...")
+    process(filename)
+	}
+	
+	configFile, err := os.Open(cnfgName)
     if err != nil {
         fmt.Println("Error opening config file ")
     }
 
     jsonParser := json.NewDecoder(configFile)
     if err = jsonParser.Decode(&config); err != nil {
-        fmt.Println("Error parsing config file " + err.Error())
+		fmt.Println(configFile);
+        fmt.Println("Error parsing config file " + err.Error() )
     }
 	configFile.Close()
 	return 
