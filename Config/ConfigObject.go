@@ -38,12 +38,13 @@ type nodeObj struct {
 }
 
 type adminObj struct {
-	serverObj 
+	Port string
 	IPAddreses []string 
 }
 
 type dataObj struct {
-	serverObj
+	Port string
+	IPAddreses []string 
 	Paths []string
 	AutoID bool 
 	AutoIndex bool
@@ -56,7 +57,8 @@ type eventsObj struct {
 }
 
 type indexObj struct {
-	serverObj
+	Port string
+	IPAddreses []string 
 	Paths []string
 }
 
@@ -74,15 +76,14 @@ type userObj struct {
 }
 
 type communicationsObj struct {
-	Name string 
-	Salt string
-	Password string
+	RequreSSL string 
+	CertLocation string
 }
 
 type encryptionObj struct {
 	Enabled bool 
-	User encryptKeyObj
-	Data encryptKeyObj
+	UserKey encryptKeyObj
+	DataKey encryptKeyObj
 	Path string
 }
 
@@ -101,6 +102,10 @@ type logicObj struct {
 }
 
 type logObj struct {
+	Errors bool
+    UserAccess bool
+    LogicChange bool
+    DataChange bool
 	Path string
 }
 type schemaObj struct {
@@ -113,7 +118,8 @@ type replicationObj struct {
 	EnableDiscovery bool
 }
 type shardsObj struct {
-	serverObj
+	Port string
+	IPAddreses []string 
 	EnableDiscovery bool
 	
 }
@@ -134,11 +140,11 @@ type shardsObj struct {
 
 func LoadConfig()(config configObj){
 	var cnfgName = "config.json"
-	/*if _, err := os.Stat(cnfgName); err != nil {
+	if _, err := os.Stat(cnfgName); err != nil {
     	fmt.Printf("no file exists; processing...")
     	setDefalultConfig()
 	}
-	*/
+	
 	configFile, err := os.Open(cnfgName)
     if err != nil {
         fmt.Println("Error opening config file ")
@@ -153,39 +159,39 @@ func LoadConfig()(config configObj){
 	return 
 }
 
-func setDefalultConfig(){
+func setDefalultConfig()(configObj){
 	
 	var cnfg = configObj{
 	    GlobalName : "AsyncLogic",
 	    LocalGroupName : "LocalLogic",
-	    Node : {
+	    Node : nodeObj{
 	        Name : "Node1",
 	        NodeID : 0,
 	        ActorType : "Master",
 	    },
 	    RootPath: "here",
-	    Admin : {
+	    Admin : adminObj{
 	        Port: "6868",
 			IPAddreses : []string{"127.0.0.1" },
 	    },
-	    Data : {
+	    Data : dataObj{
 	        Port: "6869",
 	        IPAddreses: []string{ "127.0.0.1" },
-	        Paths: []string{ "C:\\AsyncData","C:\\AsyncData" },
+	        Paths: []string{ "C:\\AsyncData","C:\\AsyncData1" },
 	        AutoID: true,
 	        AutoIndex: false,
 	        AutoReplicate: true,
 	    },
-	    Events : {
+	    Events : eventsObj{
 	        SleepTime: 1000,
 	        Path: "[root]/Events/",
 	    },
-	    Index : {
+	    Index : indexObj{
 	        Port: "6870",
 	        IPAddreses: []string{ "127.0.0.1" },
-	        Path: "[root]/Index/",
+	        Paths: []string{ "C:\\AsyncData\\Index","C:\\AsyncData\\Index1" },
 	    },
-	    Security : {
+	    Security : securityObj{
 	        Users: []userObj{
 	            {
 	                Name: "Admin",
@@ -193,46 +199,47 @@ func setDefalultConfig(){
 	                Password: "",
 	            },
 	        },
-	        Communications : {
+	        Communications : communicationsObj{
 	            RequreSSL: "",
 	            CertLocation: "",
 	        },
-	        Encryption: {
+	        Encryption: encryptionObj{
 	            Enabled: true,
-	            UserData: {
+	            UserKey: encryptKeyObj{
 	                Enabled: false,
 	                Key: "kdsfghufhv",
 	            },
-	            Data: {
+	            DataKey: encryptKeyObj{
 	                Enabled: false,
 	                Key: "kdsfghufhv",
 	            },
 	        },
 	        Path: "[root]/Security/",
 	    },
-	    Logic: {
+	    Logic: logicObj{
 	        Path: "[root]/Logic/",
 	    },
-	    Log: {
+	    Log: logObj{
 	        Errors: true,
 	        UserAccess: true,
 	        LogicChange: false,
 	        DataChange: false,
-	        UserAccess: false,
 	        Path: "[root]/Log/",
 	    },
-	    Schema: { 
+	    Schema: schemaObj{ 
 			Path: "[root]/Schema/" ,
 		},
-	    Replication: {
+	    Replication: replicationObj{
 	        AcceptData: true,
 	        Replicas: 2,
 	        Level: "Global",
 	        EnableDiscovery: true,
 	    },
-	    Shards: {
+	    Shards: shardsObj{
 	        Port: "6886",
 	        EnableDiscovery: true,
 	    },
 	}
+	
+	return cnfg
 }
