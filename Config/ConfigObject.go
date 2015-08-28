@@ -156,62 +156,62 @@ func LoadConfig()(config configObj){
 func setDefalultConfig(){
 	
 	var cnfg = configObj{
-	    GlobalName: "AsyncLogic",
-	    LocalGroupName: "LocalLogic",
-	    Node: {
-	        Name: "Node1",
-	        NodeID: 0,
-	        ActorType : "Master"
+	    GlobalName : "AsyncLogic",
+	    LocalGroupName : "LocalLogic",
+	    Node : {
+	        Name : "Node1",
+	        NodeID : 0,
+	        ActorType : "Master",
 	    },
 	    RootPath: "here",
 	    Admin : {
 	        Port: "6868",
-	        IPAddreses: [ "127.0.0.1" ]
+			IPAddreses : []string{"127.0.0.1" },
 	    },
-	    Data: {
+	    Data : {
 	        Port: "6869",
-	        IPAddreses: [ "127.0.0.1" ],
-	        Paths: [ "C:\\AsyncData","C:\\AsyncData" ],
+	        IPAddreses: []string{ "127.0.0.1" },
+	        Paths: []string{ "C:\\AsyncData","C:\\AsyncData" },
 	        AutoID: true,
 	        AutoIndex: false,
-	        AutoReplicate: true
+	        AutoReplicate: true,
 	    },
-	    Events: {
+	    Events : {
 	        SleepTime: 1000,
-	        Path: "[root]/Events/"
+	        Path: "[root]/Events/",
 	    },
-	    Index: {
+	    Index : {
 	        Port: "6870",
-	        IPAddreses: [ "127.0.0.1" ],
-	        Path: "[root]/Index/"
+	        IPAddreses: []string{ "127.0.0.1" },
+	        Path: "[root]/Index/",
 	    },
-	    Security: {
-	        Users: [
+	    Security : {
+	        Users: []userObj{
 	            {
 	                Name: "Admin",
 	                Salt: "ndk#ts32mx87",
-	                Password: ""
-	            }
-	        ],
-	        Communications: {
+	                Password: "",
+	            },
+	        },
+	        Communications : {
 	            RequreSSL: "",
-	            CertLocation: ""
+	            CertLocation: "",
 	        },
 	        Encryption: {
 	            Enabled: true,
 	            UserData: {
 	                Enabled: false,
-	                Key: "kdsfghufhv"
+	                Key: "kdsfghufhv",
 	            },
 	            Data: {
 	                Enabled: false,
-	                Key: "kdsfghufhv"
-	            }
+	                Key: "kdsfghufhv",
+	            },
 	        },
-	        Path: "[root]/Security/"
+	        Path: "[root]/Security/",
 	    },
 	    Logic: {
-	        Path: "[root]/Logic/"
+	        Path: "[root]/Logic/",
 	    },
 	    Log: {
 	        Errors: true,
@@ -219,20 +219,20 @@ func setDefalultConfig(){
 	        LogicChange: false,
 	        DataChange: false,
 	        UserAccess: false,
-	        Path: "[root]/Log/"
+	        Path: "[root]/Log/",
 	    },
 	    Schema: { 
-			Path: "[root]/Schema/" 
+			Path: "[root]/Schema/" ,
 		},
 	    Replication: {
 	        AcceptData: true,
 	        Replicas: 2,
 	        Level: "Global",
-	        EnableDiscovery: true
+	        EnableDiscovery: true,
 	    },
 	    Shards: {
 	        Port: "6886",
-	        EnableDiscovery: true
-	    }
+	        EnableDiscovery: true,
+	    },
 	}
 }
